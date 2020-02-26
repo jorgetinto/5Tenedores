@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Input, Icon, Button } from 'react-native-elements';
+import { validateEmail } from '../../utils/Validation';
+
 
 export default function RegisterForm() {
 
@@ -11,7 +13,19 @@ export default function RegisterForm() {
     const [repeatPassword, setRepeatPassword] = useState("");
 
     const register = () => {
-        console.log("Usuario Registrado...");
+        if (!email || !password || !repeatPassword) {
+            console.log("Todos los campos son obligatorios");
+        } else {
+            if (!validateEmail(email)) {
+                console.log("el email no es correcto");
+            } else {
+                if (password !== repeatPassword) {
+                    console.log("El email no es correcto");
+                } else {
+                    console.log("Correcto");
+                }
+            }
+        }
     }
 
     return (
